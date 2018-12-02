@@ -11,13 +11,13 @@
     -->
     <groupId>mc.alk</groupId>
     <artifactId>worldeditutil</artifactId>
-    <version>1.1.5</version>
+    <version>1.1.6</version>
     <packaging>jar</packaging>
     <name>WorldEditUtil</name>
     <url>http://github.com/Europia79/WorldEditUtil</url>
     <properties>
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <repositories>
         <repository>
@@ -78,14 +78,14 @@
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ssh</artifactId>
-                <version>2.4</version>
+                <version>2.12</version>
             </extension>
         </extensions>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.7</version>
+                <version>2.8.2</version>
                 <configuration>
                     <skip>false</skip>
                 </configuration>
@@ -93,12 +93,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.0.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.8.1</version>
+                <version>2.10.4</version>
                 <configuration>
                     <excludePackageNames>*.metrics</excludePackageNames>
                 </configuration>
@@ -106,7 +106,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>1.4</version>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -126,9 +126,9 @@
         </plugins>
     </build>
     <distributionManagement>
-      <repository>
-        <id>rainbowcraft-repo</id>
-        <url>scp://23.29.127.102/var/www/maven/repository</url>
-      </repository>
+        <repository>
+            <id>rainbowcraft-repo</id>
+            <url>scp://rainbowcraft.sytes.net/var/www/maven/repository</url>
+        </repository>
     </distributionManagement>
 </project>
