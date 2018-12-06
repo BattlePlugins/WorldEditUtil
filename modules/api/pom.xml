@@ -79,7 +79,7 @@
                             <relocations>
                                 <relocation>
                                     <pattern>mc.euro.version</pattern>
-                                    <shadedPattern>mc.alk.arena.version</shadedPattern>
+                                    <shadedPattern>mc.alk.util.version</shadedPattern>
                                 </relocation>
                             </relocations>
                             <artifactSet>
