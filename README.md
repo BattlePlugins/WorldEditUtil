@@ -2,13 +2,13 @@ WorldEditUtil
 ---
 An interface between different versions of WorldEdit/WorldGuard. 
 
-The problem is that if you build your project against WE/WG v5, then at runtime, your plugin will fail 
-if the server is running WE/WG v6 (and vice-versa).
+The problem is that if you build your project against an incompatible WE/WG version, then at runtime, your plugin will fail 
+if the server is running a later WE/WG version (and vice-versa).
 
 The solution is to interface with WorldEdit/WorldGuard abstractly 
 and let the specific implementation vary at runtime:
 
-The WorldEditUtil project allows BattleArena to be backwards compatible with WorldEdit v5 & v6
+The WorldEditUtil project allows BattleArena to be backwards compatible with WorldEdit v5, v6 & v7
 
 
 ```java
@@ -87,12 +87,18 @@ public abstract boolean pasteSchematic(CommandSender sender, ProtectedRegion pr,
 public abstract boolean pasteSchematic(CommandSender sender, Vector position, String schematic, World world);
 
 public abstract boolean saveSchematic(Player p, String schematicName);
+
+public abstract Region getWorldEditRegion(Player p);
+
+public abstract BlockSelection getBlockSelection(Region region);
+
+public abstract BlockSelection getBlockSelection(World world, ProtectedRegion region);
 ```
 
 Maven Repository:
 ---
 
-[http://rainbowcraft.sytes.net/maven/repository/] (http://rainbowcraft.sytes.net/maven/repository/ "Maven Repository")
+[http://rainbowcraft.sytes.net/maven/repository/](http://rainbowcraft.sytes.net/maven/repository/ "Maven Repository") (Maven Repository)
 
 If you use maven, put these declarations in your pom.xml:
 
@@ -140,7 +146,7 @@ Check to make sure this repository is still active. If not, you will have to ins
 <dependency>
     <groupId>mc.alk</groupId>
     <artifactId>worldeditutil</artifactId>
-    <version>1.1.6</version>
+    <version>1.2.0-SNAPSHOT</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -179,23 +185,22 @@ Dependencies:
 ---
 
 - **Bukkit API**
-  * https://github.com/Bukkit/Bukkit
-  * http://repo.bukkit.org/content/groups/public
+  * https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/browse
+  * https://repo.md-5.net/content/repositories/public/
+  * https://hub.spigotmc.org/nexus/content/repositories/public/
 - **WorldEdit**
   * http://dev.bukkit.org/bukkit-plugins/worldedit/
-  * https://github.com/sk89q/worldedit
+  * https://github.com/EngineHub/WorldEdit
   * http://maven.sk89q.com/repo/
-  * v5 & v6 are required for compilation
+  * v5, v6 & v7 are required for compilation
 - **WorldGuard**
   * http://dev.bukkit.org/bukkit-plugins/worldguard/
-  * https://github.com/sk89q/WorldGuard
+  * https://github.com/EngineHub/WorldGuard
   * http://maven.sk89q.com/repo/
-  * v5 & v6 are required for compilation
+  * v5, v6 & v7 are required for compilation
 
 
 Contact:
 ---
-
-Nick at Nikolai.Kalashnikov@hotmail.com
-
-Nicodemis79 on Skype
+Live Chat on Discord:
+* [BattlePlugins Dev](https://discord.gg/tMVPVJf): Join our Discord server to get support, talk about dev stuff, or just say hi!
