@@ -49,9 +49,9 @@ public abstract class WorldGuardInterface {
         boolean wgIsInitialized = FieldTester.isInitialized(wgp);
         if (we.isCompatible("7") && wg.isCompatible("7") && wgIsInitialized) {
             WGI = instantiate("v7");
-        } else if (we.isCompatible("6") && wg.isLessThan("7") && wg.isCompatible("6") && wg.isLessThan("7") && wgIsInitialized) {
+        } else if (we.isLessThan("7") && we.isCompatible("6") && wg.isLessThan("7") && wg.isCompatible("6") && wgIsInitialized) {
             WGI = instantiate("v6");
-        } else if (we.isCompatible("5") && we.isLessThan("6") && wg.isCompatible("5") && wg.isLessThan("6") && wgIsInitialized) {
+        } else if (we.isLessThan("6") && we.isCompatible("5") && wg.isLessThan("6") && wg.isCompatible("5") && wgIsInitialized) {
             WGI = instantiate("v5");
         } else {
             // Not present, not compatible, or not supported.
