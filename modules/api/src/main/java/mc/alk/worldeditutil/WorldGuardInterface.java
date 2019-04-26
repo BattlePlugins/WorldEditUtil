@@ -42,12 +42,15 @@ public abstract class WorldGuardInterface {
      */
     public static WorldGuardInterface newInstance() {
         WorldGuardInterface WGI = null;
+        Version<Plugin> fawe = VersionFactory.getPluginVersion("FastAsyncWorldEdit");
         Version<Plugin> we = VersionFactory.getPluginVersion("WorldEdit");
         Version<Plugin> wg = VersionFactory.getPluginVersion("WorldGuard");
         WorldGuardPlugin wgp = (WorldGuardPlugin) Bukkit.getPluginManager().getPlugin("WorldGuard");
 
         boolean wgIsInitialized = FieldTester.isInitialized(wgp);
-        if (we.isCompatible("7") && wg.isCompatible("7") && wgIsInitialized) {
+        if (fawe.isCompatible("1.13") && wg.isCompatible("7") && wgIsInitialized) {
+            WGI = instantiate("v7");
+        } else if (we.isCompatible("7") && wg.isCompatible("7") && wgIsInitialized) {
             WGI = instantiate("v7");
         } else if (we.isLessThan("7") && we.isCompatible("6") && wg.isLessThan("7") && wg.isCompatible("6") && wgIsInitialized) {
             WGI = instantiate("v6");
