@@ -41,8 +41,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedPolygonalRegion;
@@ -257,23 +255,23 @@ public class WG extends WorldGuardAbstraction {
     }
 
     @Override
-    public Flag<?> getWGFlag(String flagString) {
-        Flag<?> f = Flags.get(flagString);
-        if (f.getName().equalsIgnoreCase(flagString)) {
+    public Flag<?> getWGFlag(String id) {
+        Flag<?> f = WorldGuard.getInstance().getFlagRegistry().get(id);
+        if (f != null && f.getName().equalsIgnoreCase(id)) {
             return f;
         }
 
-        throw new IllegalStateException("Worldguard flag " + flagString + " not found");
+        throw new IllegalStateException("Worldguard flag " + id + " not found");
     }
 
     @Override
-    public StateFlag getStateFlag(String flagString) {
-        Flag<?> f = Flags.get(flagString);
+    public StateFlag getStateFlag(String id) {
+        Flag<?> f = WorldGuard.getInstance().getFlagRegistry().get(id);
         if (f instanceof StateFlag) {
             return (StateFlag) f;
         }
 
-        throw new IllegalStateException("Worldguard flag " + flagString + " not found");
+        throw new IllegalStateException("Worldguard flag " + id + " not found");
     }
 
     @Override
