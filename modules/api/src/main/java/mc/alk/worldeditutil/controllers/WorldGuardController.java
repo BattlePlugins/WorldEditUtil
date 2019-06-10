@@ -172,6 +172,14 @@ public class WorldGuardController {
         return wg.trackRegion(world, id);
     }
 
+    public static ProtectedRegion getRegion(String world, String id) {
+        return wg.getRegion(world, id);
+    }
+
+    public static ProtectedRegion getRegion(World world, String id) {
+        return wg.getRegion(world, id);
+    }
+
     public static Region getWorldEditRegion(Player player) {
         return wg.getWorldEditRegion(player);
     }
