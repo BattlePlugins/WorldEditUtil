@@ -30,6 +30,9 @@ import com.sk89q.worldedit.util.io.Closer;
 import com.sk89q.worldedit.util.io.file.FilenameException;
 import com.sk89q.worldedit.world.registry.LegacyWorldData;
 import com.sk89q.worldedit.world.registry.WorldData;
+import com.sk89q.worldguard.bukkit.RegionQuery;
+import com.sk89q.worldguard.bukkit.WGBukkit;
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.GlobalRegionManager;
 import com.sk89q.worldguard.protection.flags.DefaultFlag;
 import com.sk89q.worldguard.protection.flags.Flag;
@@ -139,6 +142,13 @@ public class WG extends WorldGuardAbstraction {
     @Override
     public BlockSelection getBlockSelection(World world, ProtectedRegion region) {
         return new BlockSelection(world, BukkitUtil.toLocation(world, region.getMinimumPoint()), BukkitUtil.toLocation(world, region.getMaximumPoint()));
+    }
+
+    @Override
+    public boolean queryFlag(Location loc, Player player, StateFlag flag, StateFlag.State state) {
+        RegionQuery query = WGBukkit.getPlugin().getRegionContainer().createQuery();
+        ApplicableRegionSet regionSet = query.getApplicableRegions(loc);
+        return regionSet.queryState(WGBukkit.getPlugin().wrapPlayer(player), flag) == state;
     }
 
     /**

@@ -158,4 +158,6 @@ public abstract class WorldGuardInterface {
     public abstract BlockSelection getBlockSelection(Region region);
 
     public abstract BlockSelection getBlockSelection(World world, ProtectedRegion region);
+
+    public abstract boolean queryFlag(Location loc, Player player, StateFlag flag, StateFlag.State state);
 }

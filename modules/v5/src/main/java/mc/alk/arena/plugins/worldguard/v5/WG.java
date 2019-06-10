@@ -21,6 +21,8 @@ import com.sk89q.worldedit.commands.SchematicCommands;
 import com.sk89q.worldedit.data.DataException;
 import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.schematic.SchematicFormat;
+import com.sk89q.worldguard.bukkit.WGBukkit;
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.GlobalRegionManager;
 import com.sk89q.worldguard.protection.flags.DefaultFlag;
 import com.sk89q.worldguard.protection.flags.Flag;
@@ -37,6 +39,7 @@ import mc.alk.worldeditutil.math.BlockSelection;
 import mc.alk.worldeditutil.math.BlockVector;
 import mc.alk.worldeditutil.WorldGuardAbstraction;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -103,6 +106,16 @@ public class WG extends WorldGuardAbstraction {
     @Override
     public BlockSelection getBlockSelection(World world, ProtectedRegion region) {
         return new BlockSelection(world, BukkitUtil.toLocation(world, region.getMinimumPoint()), BukkitUtil.toLocation(world, region.getMaximumPoint()));
+    }
+
+    @Override
+    public boolean queryFlag(Location loc, Player player, StateFlag flag, StateFlag.State state) {
+        RegionManager regionManager = WGBukkit.getRegionManager(loc.getWorld());
+        ApplicableRegionSet regionSet = regionManager.getApplicableRegions(loc);
+        if (player == null)
+            return regionSet.getFlag(flag) == state;
+
+        return regionSet.getFlag(flag, WGBukkit.getPlugin().wrapPlayer(player)) == state;
     }
 
     @Override

@@ -216,4 +216,9 @@ public class WG extends WorldGuardInterface {
     public BlockSelection getBlockSelection(World world, ProtectedRegion region) {
         return null;
     }
+
+    @Override
+    public boolean queryFlag(Location loc, Player player, StateFlag flag, StateFlag.State state) {
+        return false;
+    }
 }

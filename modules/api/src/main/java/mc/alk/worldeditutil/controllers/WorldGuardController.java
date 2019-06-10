@@ -1,6 +1,7 @@
 package mc.alk.worldeditutil.controllers;
 
 import com.sk89q.worldedit.regions.Region;
+import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import mc.alk.arena.objects.exceptions.RegionNotFound;
 import mc.alk.arena.objects.regions.ArenaRegion;
@@ -181,5 +182,9 @@ public class WorldGuardController {
 
     public static BlockSelection getBlockSelection(World world, ProtectedRegion region) {
         return wg.getBlockSelection(world, region);
+    }
+
+    public static boolean queryFlag(Location loc, Player player, StateFlag flag, StateFlag.State state) {
+        return wg.queryFlag(loc, player, flag, state);
     }
 }
